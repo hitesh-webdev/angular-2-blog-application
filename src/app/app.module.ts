@@ -8,7 +8,7 @@ import { PostItemComponent } from './post/post-list/post-item.component';
 import { PostComponent } from './post/post.component';
 import { SidebarComponent } from './post/sidebar/sidebar.component';
 import { FooterComponent } from './footer.component';
-import { PostDetailComponent } from './post/src/app/post/post-detail/post-detail.component';
+import { PostDetailComponent } from './post/post-detail/post-detail.component';
 
 @NgModule({
   declarations: [
