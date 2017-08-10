@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { AddPostComponent } from './post/add-post/add-post.component';
 import { NotFoundComponent } from './not-found.component';
 import { AuthGuard } from './shared/auth-guard.service';
+import { LoginGuard } from './shared/login-guard.service';
 import { AuthService } from './shared/auth.service';
 import { CanDeactivateGuard } from './shared/can-deactivate-guard.service';
 
@@ -25,7 +26,7 @@ const appRoutes: Routes = [
     {path: '', component: PostListComponent},
     {path: 'post-detail/:id', component: PostDetailComponent}
   ]},
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
   {path: 'add-post', canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard], component: AddPostComponent},
   {path: '**', component: NotFoundComponent}
 ];
@@ -48,7 +49,7 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthGuard, AuthService, CanDeactivateGuard],
+  providers: [AuthGuard, AuthService, CanDeactivateGuard, LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
