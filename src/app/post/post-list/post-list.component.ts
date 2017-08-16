@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from '../../shared/posts.service';
 import { Post } from '../post';
 
 @Component({
@@ -9,10 +10,10 @@ export class PostListComponent implements OnInit {
 
   posts: Post[] = [];
 
-
-  constructor() { }
+  constructor(private postsService: PostService) { }
 
   ngOnInit() {
+    this.posts = this.postsService.postsList;
   }
 
 }

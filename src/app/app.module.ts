@@ -17,6 +17,7 @@ import { NotFoundComponent } from './not-found.component';
 import { AuthGuard } from './shared/auth-guard.service';
 import { LoginGuard } from './shared/login-guard.service';
 import { AuthService } from './shared/auth.service';
+import { PostService } from './shared/posts.service';
 import { CanDeactivateGuard } from './shared/can-deactivate-guard.service';
 
 /* Routing paths
@@ -52,7 +53,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthGuard, AuthService, CanDeactivateGuard, LoginGuard],
+  providers: [PostService, AuthGuard, AuthService, CanDeactivateGuard, LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

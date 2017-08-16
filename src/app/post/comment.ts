@@ -1,3 +1,3 @@
 export class Comment {
-    constructor(public username: string, public text: string, public timestamp: string) {}
+    constructor(public username: string, public text: string, public timestamp: number) {}
 }

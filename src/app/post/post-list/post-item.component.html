@@ -1,15 +1,17 @@
 <!-- Post Item -->
 <h2>
-    <a [routerLink]="['/posts/post-detail', 1]">Blog Post Title</a>
+    <a [routerLink]="['/posts/post-detail', post.postId]">{{post.title}}</a>
 </h2>
-<p class="lead">
-    by <a href="index.php">Start Bootstrap</a>
+<p>
+    by <b>{{post.author}}</b>
 </p>
-<p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+<p><span class="glyphicon glyphicon-time"></span> Posted on {{ dateString }} at {{ timeString }}</p>
 <hr>
-<img class="img-responsive" src="http://placehold.it/900x300" alt="">
+<img class="img-responsive" [src]="post.imagePath" alt="">
 <hr>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-<a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+<p><span [textContent]="post.content.substring(0,200)"></span>...</p>
+<a class="btn btn-primary" [routerLink]="['/posts/post-detail', post.postId]">
+    Read More <span class="glyphicon glyphicon-chevron-right"></span>
+</a>
 
 <hr>
