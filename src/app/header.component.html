@@ -5,18 +5,24 @@
             <a class="navbar-brand" routerLink="/">Blog POC</a>
         </div>
         <ul class="nav navbar-nav">
-            <li routerLinkActive="active">
-                <a routerLink="/">Home</a>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a routerLink="/posts">Home</a>
             </li>
-            <li routerLinkActive="active">
+            <li *ngIf="loggedIn" routerLinkActive="active">
                 <a routerLink="/add-post">Add Post</a>
             </li>
         </ul>
 
         <ul class="nav navbar-nav pull-right">
-          <li routerLinkActive="active">
-            <a routerLink="/login">Login</a>
-          </li>
+            <li *ngIf="!loggedIn" routerLinkActive="active">
+                <a routerLink="/login">Login</a>
+            </li>
+            <li>
+                <a *ngIf="loggedIn">Welcome! {{userEmail}}</a>
+            </li>
+            <li *ngIf="loggedIn">
+                <a [ngStyle]="{cursor: 'pointer'}" (click)="onLogout()">Logout</a>
+            </li>
         </ul>
     </div>
     <!-- /.container -->

@@ -41,7 +41,7 @@
 <hr>
 
 <!-- Comments Form -->
-<div class="well">
+<div *ngIf="loggedIn" class="well">
     <h4>Leave a Comment:</h4>
     <form role="form">
         <div class="form-group">
@@ -49,9 +49,10 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-</div>
 
-<hr>
+    <hr>
+
+</div>
 
 <!-- Posted Comments -->
 

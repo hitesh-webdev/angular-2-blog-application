@@ -23,12 +23,13 @@ import { CanDeactivateGuard } from './shared/can-deactivate-guard.service';
 ============================================ */
 
 const appRoutes: Routes = [
-  {path: '', component: PostComponent, children: [
-    {path: '', component: PostListComponent},
+  {path: 'posts', component: PostComponent, children: [
+    {path: '', component: PostListComponent, pathMatch: 'full'},
     {path: 'post-detail/:id', component: PostDetailComponent}
   ]},
   {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
   {path: 'add-post', canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard], component: AddPostComponent},
+  {path: '', redirectTo: '/posts', pathMatch: 'full'},
   {path: '**', component: NotFoundComponent}
 ];
 
