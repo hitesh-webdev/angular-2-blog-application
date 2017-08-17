@@ -3,9 +3,9 @@
     <a [routerLink]="['/posts/post-detail', post.postId]">{{post.title}}</a>
 </h2>
 <p>
-    by <b>{{post.author}}</b>
+    by <b>{{ post.author }}</b>
 </p>
-<p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.timestamp * 1000 | date:'fullDate' }} at {{ post.timestamp * 1000 | date:'shortTime'}}</p>
+<p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.timestamp | date:'fullDate' }} at {{ post.timestamp | date:'shortTime' }}</p>
 <hr>
 <img class="img-responsive" [src]="post.imagePath" alt="">
 <hr>

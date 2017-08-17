@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(form: NgForm) {
-    console.log(form);
     if (this.authService.onLogin(form.value.email, form.value.password)) {
       this.invalidCredentials = false;
       this.router.navigate(['/']);

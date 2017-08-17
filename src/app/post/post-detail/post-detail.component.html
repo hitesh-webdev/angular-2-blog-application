@@ -34,7 +34,7 @@
 <hr>
 
 <!-- Blog Comments -->
-<h3><span class="glyphicon glyphicon-comment"></span> Comments:</h3>
+<h3 *ngIf="post.comments.length > 0 || loggedIn"><span class="glyphicon glyphicon-comment"></span> Comments:</h3>
 
 <hr>
 
