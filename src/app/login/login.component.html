@@ -7,6 +7,7 @@
       *ngIf="invalidCredentials" 
       class="help-block"
       [ngStyle]="{textAlign: 'center'}"
+      #invalidText
       >
       Invalid Email or Password!
     </p>
@@ -23,6 +24,7 @@
             class="form-control" 
             required
             email
+            (keydown)="updateInvalidStatus()"
             #email="ngModel">
           <p 
             *ngIf="!email.valid && email.touched"
@@ -40,6 +42,7 @@
             name="password"
             ngModel
             required
+            (keydown)="updateInvalidStatus()"
             #password="ngModel">
           <p 
             *ngIf="!password.valid && password.touched"

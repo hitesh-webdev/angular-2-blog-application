@@ -9,15 +9,9 @@ export class PostItemComponent implements OnInit {
 
   @Input() post: Post;
 
-  dateString: string;
-  timeString: string;
-
   constructor() { }
 
   ngOnInit() {
-    const date = new Date(this.post.timestamp);
-    this.dateString = date.toDateString();
-    this.timeString = date.getHours() + ':' + date.getMinutes();
   }
 
 }

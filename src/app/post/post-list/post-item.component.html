@@ -5,7 +5,7 @@
 <p>
     by <b>{{post.author}}</b>
 </p>
-<p><span class="glyphicon glyphicon-time"></span> Posted on {{ dateString }} at {{ timeString }}</p>
+<p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.timestamp * 1000 | date:'fullDate' }} at {{ post.timestamp * 1000 | date:'shortTime'}}</p>
 <hr>
 <img class="img-responsive" [src]="post.imagePath" alt="">
 <hr>

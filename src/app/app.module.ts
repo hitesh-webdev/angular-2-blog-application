@@ -19,6 +19,7 @@ import { LoginGuard } from './shared/login-guard.service';
 import { AuthService } from './shared/auth.service';
 import { PostService } from './shared/posts.service';
 import { CanDeactivateGuard } from './shared/can-deactivate-guard.service';
+import { TagPostsComponent } from './post/tag-posts/tag-posts.component';
 
 /* Routing paths
 ============================================ */
@@ -26,7 +27,8 @@ import { CanDeactivateGuard } from './shared/can-deactivate-guard.service';
 const appRoutes: Routes = [
   {path: 'posts', component: PostComponent, children: [
     {path: '', component: PostListComponent, pathMatch: 'full'},
-    {path: 'post-detail/:id', component: PostDetailComponent}
+    {path: 'post-detail/:id', component: PostDetailComponent},
+    {path: 'tags/:tag', component: TagPostsComponent}
   ]},
   {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
   {path: 'add-post', canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard], component: AddPostComponent},
@@ -46,7 +48,8 @@ const appRoutes: Routes = [
     PostDetailComponent,
     LoginComponent,
     AddPostComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TagPostsComponent
   ],
   imports: [
     BrowserModule,

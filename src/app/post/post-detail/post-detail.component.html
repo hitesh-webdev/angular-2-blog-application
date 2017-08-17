@@ -11,7 +11,7 @@
 <hr>
 
 <!-- Date/Time -->
-<p><span class="glyphicon glyphicon-time"></span> Posted on {{ dateString }} at {{ timeString }}</p>
+<p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.timestamp | date:'fullDate' }} at {{ post.timestamp | date:'shortTime' }}</p>
 
 <hr>
 
@@ -61,7 +61,7 @@
     </a>
     <div class="media-body">
         <h4 class="media-heading">{{comment.username}}
-            <small [textContent]='comment.timestamp'></small>
+            <small>{{ comment.timestamp | date:'fullDate' }} at {{ comment.timestamp | date:'shortTime' }}</small>
         </h4>
         {{comment.text}}
     </div>

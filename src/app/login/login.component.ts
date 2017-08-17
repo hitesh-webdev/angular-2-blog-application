@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../shared/auth.service';
@@ -11,6 +11,7 @@ import { AuthService } from '../shared/auth.service';
 export class LoginComponent implements OnInit {
 
   invalidCredentials: boolean = false;
+  @ViewChild('invalidText') invalidText: ElementRef;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -24,6 +25,13 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
     } else {
       this.invalidCredentials = true;
+    }
+  }
+
+  updateInvalidStatus() {
+    if (this.invalidCredentials) {
+      this.invalidCredentials = false;
+      this.invalidText.nativeElement.textContent = '';
     }
   }
 

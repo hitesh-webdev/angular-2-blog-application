@@ -16,8 +16,6 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   postId: number;
   post: Post;
-  dateString: string;
-  timeString: string;
 
   constructor(private authService: AuthService,
      private route: ActivatedRoute,
@@ -30,21 +28,14 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     this.postId = +this.route.snapshot.params['id']; // Type casting to integer
 
     /* Getting post from the PostService according to postId */
-    for (let post of this.postsService.postsList) {
-      if (post['postId'] === this.postId) {
-        this.post = post;
-        break;
-      }
-    }
+    this.post = this.postsService.postsList.filter((post) => {
+      return post['postId'] === this.postId;
+    })[0];
 
     /* Navigating user if postId not found */
     if (this.post === undefined) {
       this.router.navigate(['/post-not-found']);
     }
-
-    const date = new Date(this.post.timestamp);
-    this.dateString = date.toDateString();
-    this.timeString = date.getHours() + ':' + date.getMinutes();
 
 
     /* Visibility of comment box to the logged in user */
@@ -60,6 +51,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         }
       }
     );
+
   }
 
   ngOnDestroy() {
