@@ -18,6 +18,7 @@ import { AuthGuard } from './shared/auth-guard.service';
 import { LoginGuard } from './shared/login-guard.service';
 import { AuthService } from './shared/auth.service';
 import { PostService } from './shared/posts.service';
+import { SearchService } from './shared/search.service';
 import { CanDeactivateGuard } from './shared/can-deactivate-guard.service';
 import { TagPostsComponent } from './post/tag-posts/tag-posts.component';
 
@@ -57,7 +58,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PostService, AuthGuard, AuthService, CanDeactivateGuard, LoginGuard],
+  providers: [PostService, SearchService, AuthGuard, AuthService, CanDeactivateGuard, LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

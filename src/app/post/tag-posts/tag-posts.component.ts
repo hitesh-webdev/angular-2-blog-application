@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { PostService } from '../../shared/posts.service';
+import { Subscription } from 'rxjs/Subscription';
 import { Post } from '../post';
 
 @Component({
@@ -12,20 +13,25 @@ export class TagPostsComponent implements OnInit {
 
   tag: string;
   posts: Post[];
+  subscription: Subscription;
 
   constructor(private route: ActivatedRoute, private postService: PostService) { }
 
   ngOnInit() {
 
-    this.tag = this.route.snapshot.params['tag'];
-
-    this.posts = this.postService.postsList.filter(
-      (post) => {
-        return post['tags'].indexOf(this.tag) !== -1;
+    this.subscription = this.route.params.subscribe(
+      (params: Params) => {
+        this.tag = params['tag'];
+        this.posts = this.postService.postsList.filter(
+          (post) => {
+            return post['tags'].indexOf(this.tag) !== -1;
+          }
+        );
       }
     );
 
-    console.log(this.posts);
+    // this.tag = this.route.snapshot.params['tag'];
+    // console.log(this.posts);
 
   }
 

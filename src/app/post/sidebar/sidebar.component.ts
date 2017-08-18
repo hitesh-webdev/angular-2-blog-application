@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from '../../shared/search.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  searchTerm: string;
+
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
+  }
+
+  onSearch() {
+    this.searchService.newSearch.next(this.searchTerm);
+    console.log(this.searchTerm);
   }
 
 }
