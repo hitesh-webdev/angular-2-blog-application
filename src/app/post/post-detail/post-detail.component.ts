@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { AuthService } from '../../shared/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { PostService } from '../../shared/posts.service';
 import { Post } from '../post';
+import { Comment } from '../comment';
 
 @Component({
   selector: 'app-post-detail',
@@ -52,6 +54,17 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       }
     );
 
+  }
+
+  onComment(form: NgForm) {
+    const username: string = this.authService.userEmail;
+    const text: string = form.value.comment;
+    const timestamp: number = new Date().getTime();
+
+    /* Creating a new comment */
+    const comment = new Comment(username, text, timestamp);
+    this.post.comments.push(comment);
+    form.reset();
   }
 
   ngOnDestroy() {

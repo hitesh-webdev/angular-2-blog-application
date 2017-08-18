@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../shared/auth.service';
 import { PostService } from '../../shared/posts.service';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CanComponentDeactivate } from '../../shared/can-deactivate-guard.service';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { Comment } from '../comment';
 import { Post } from '../post';
 
@@ -13,10 +14,11 @@ import { Post } from '../post';
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.css']
 })
-export class AddPostComponent implements OnInit, CanComponentDeactivate {
+export class AddPostComponent implements OnInit, CanComponentDeactivate, OnDestroy {
 
   changesSaved: boolean = false;
   postForm: FormGroup;
+  subscription: Subscription;
 
   constructor(private router: Router, private authService: AuthService, private postService: PostService) { }
 
@@ -27,6 +29,15 @@ export class AddPostComponent implements OnInit, CanComponentDeactivate {
       'content': new FormControl(null, Validators.required),
       'tags': new FormArray([])
     });
+
+    this.subscription = this.authService.loginStatus.subscribe(
+      (loginStatus) => {
+        if (!loginStatus) {
+          this.changesSaved = true;
+          this.router.navigate(['/posts']);
+        }
+      }
+    );
   }
 
   onAddPost() {
@@ -78,6 +89,10 @@ export class AddPostComponent implements OnInit, CanComponentDeactivate {
     } else {
       return confirm('Do you want to discard the changes?');
     }
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

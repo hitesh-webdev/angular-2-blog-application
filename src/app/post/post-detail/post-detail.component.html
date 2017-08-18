@@ -41,11 +41,24 @@
 <!-- Comments Form -->
 <div *ngIf="loggedIn" class="well">
     <h4>Leave a Comment:</h4>
-    <form role="form">
+    <form role="form" (ngSubmit)="onComment(f)" #f="ngForm">
         <div class="form-group">
-            <textarea class="form-control" rows="3"></textarea>
+            <textarea 
+                class="form-control" 
+                rows="3" 
+                required
+                name="comment"
+                ngModel 
+                #comment="ngModel"
+            >
+            </textarea>
+            <p 
+                class="help-block"
+                *ngIf="!comment.valid && comment.touched">
+                * Please enter a Comment
+            </p>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" [disabled]="!f.valid" class="btn btn-primary">Submit</button>
     </form>
 
     <hr>
