@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  /* Removing the Invalid Email/Password status on field updations */
   updateInvalidStatus() {
     if (this.invalidCredentials) {
       this.invalidCredentials = false;

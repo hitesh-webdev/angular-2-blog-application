@@ -42,7 +42,7 @@ export class AddPostComponent implements OnInit, CanComponentDeactivate, OnDestr
 
   onAddPost() {
     this.changesSaved = true;
-    console.log(this.postForm);
+    // console.log(this.postForm);
 
     const postId: number = this.postService.postsList.length + 1;
     const title: string = this.postForm.get('title').value;
