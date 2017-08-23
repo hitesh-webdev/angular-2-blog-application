@@ -27,7 +27,7 @@ export class AddPostComponent implements OnInit, CanComponentDeactivate, OnDestr
       'title': new FormControl(null, Validators.required),
       'imagePath': new FormControl(null, Validators.required),
       'content': new FormControl(null, Validators.required),
-      'tags': new FormArray([])
+      'tags': new FormArray([new FormControl(null, Validators.required)])
     });
 
     this.subscription = this.authService.loginStatus.subscribe(

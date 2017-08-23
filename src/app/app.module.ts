@@ -1,64 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+
+import { PostModule } from './post/post.module';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginModule } from './login/login.module';
+import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header.component';
-import { PostListComponent } from './post/post-list/post-list.component';
-import { PostItemComponent } from './post/post-list/post-item.component';
-import { PostComponent } from './post/post.component';
-import { SidebarComponent } from './post/sidebar/sidebar.component';
-import { FooterComponent } from './footer.component';
-import { PostDetailComponent } from './post/post-detail/post-detail.component';
-import { LoginComponent } from './login/login.component';
-import { AddPostComponent } from './post/add-post/add-post.component';
-import { NotFoundComponent } from './not-found.component';
-import { AuthGuard } from './shared/auth-guard.service';
-import { LoginGuard } from './shared/login-guard.service';
-import { AuthService } from './shared/auth.service';
-import { PostService } from './shared/posts.service';
-import { SearchService } from './shared/search.service';
-import { CanDeactivateGuard } from './shared/can-deactivate-guard.service';
-import { TagPostsComponent } from './post/tag-posts/tag-posts.component';
-
-/* Routing paths
-============================================ */
-
-const appRoutes: Routes = [
-  {path: 'posts', component: PostComponent, children: [
-    {path: '', component: PostListComponent, pathMatch: 'full'},
-    {path: 'post-detail/:id', component: PostDetailComponent},
-    {path: 'tags/:tag', component: TagPostsComponent}
-  ]},
-  {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
-  {path: 'add-post', canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard], component: AddPostComponent},
-  {path: '', redirectTo: '/posts', pathMatch: 'full'},
-  {path: '**', component: NotFoundComponent}
-];
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    PostListComponent,
-    PostItemComponent,
-    PostComponent,
-    SidebarComponent,
-    FooterComponent,
-    PostDetailComponent,
-    LoginComponent,
-    AddPostComponent,
-    NotFoundComponent,
-    TagPostsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule,
+    LoginModule,
+    PostModule,
+    CoreModule
   ],
-  providers: [PostService, SearchService, AuthGuard, AuthService, CanDeactivateGuard, LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

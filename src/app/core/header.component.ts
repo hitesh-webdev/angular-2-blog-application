@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { AuthService } from './shared/auth.service';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-header',

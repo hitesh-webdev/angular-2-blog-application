@@ -16,12 +16,14 @@
 <hr>
 
 <!-- Tags -->
+<div *ngIf="post.tags.length > 0">
 <p>
     <span class="glyphicon glyphicon-tags"></span> Tags: 
     <a [routerLink]="['/posts/tags', tag]" *ngFor="let tag of post.tags">{{tag}}, </a>
 </p>
 
 <hr>
+</div>
 
 <!-- Preview Image -->
 <img class="img-responsive" [src]="post.imagePath" alt="">
